@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
+    <!-- Theme tittle -->
+    <title><%= title %></title>
+
+    <!-- Theme style CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/vendors/wow-js/animate.css" rel="stylesheet">
+    <link href="/vendors/swiper-slider/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/vendors/nice-select/nice-select.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- header + sidebar  -->
+    <%- include('./partials/header.ejs') %> 
+    <%- include('./partials/sidebar.ejs') %> 
+
+    <div class="replay-dashboard-section section">
+        <div class="replay-dashboard-wrapper">
+            <!-- banner section start -->
+            <div class="banner-section section">
+                <div class="replay-banner-slide swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="replay-banner-area">
+                                <div class="banner-bg-thumb">
+                                    <img class="banner-bg" src="/images/banner.png" alt="">
+                                </div>
+                                <img src="/images/pngwing.com.png" alt="" class="banner-thumb">
+                                <div class="banner-content">
+                                    <h2><span>Welcome Bonus </span> to your deposit</h2>
+                                    <a href="/shop" class="btn theme-btn round">Claim Bonus</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="replay-banner-area">
+                                <div class="banner-bg-thumb">
+                                    <img class="banner-bg" src="/images/banner.png" alt="">
+                                </div>
+                                <img src="/images/pngwing.com.png" alt="" class="banner-thumb">
+                                <div class="banner-content">
+                                    <h2><span>Welcome Bonus </span> to your deposit</h2>
+                                    <a href="/shop" class="btn theme-btn round">Claim Bonus</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="replay-banner-area">
+                                <div class="banner-bg-thumb">
+                                    <img class="banner-bg" src="/images/banner.png" alt="">
+                                </div>
+                                <img src="/images/pngwing.com.png" alt="" class="banner-thumb">
+                                <div class="banner-content">
+                                    <h2><span>Welcome Bonus </span> to your deposit</h2>
+                                    <a href="/shop" class="btn theme-btn round">Claim Bonus</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="replay-banner-area">
+                                <div class="banner-bg-thumb">
+                                    <img class="banner-bg" src="/images/banner.png" alt="">
+                                </div>
+                                <img src="/images/pngwing.com.png" alt="" class="banner-thumb">
+                                <div class="banner-content">
+                                    <h2><span>Welcome Bonus </span> to your deposit</h2>
+                                    <a href="/shop" class="btn theme-btn round">Claim Bonus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- My wagers start  -->
+            <div class="replay-addwagers-section section">
+                <div class="replay-section-title">
+                    <h2>My wagers</h2>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <% wagers.forEach(wager => { %>
+                                        <div class="thumb">
+                                            <img src="<%= user.avatar %>" alt="">
+                                        </div>
+                                        <h3><%= wager.username %></h3>
+                                        <div class="country">
+                                            <span class="icon">
+                                                <img src="/images/flag.png" alt="">
+                                            </span>
+                                            <p>United States</p>
+                                        </div>
+                                        <div class="tokens">
+                                            <h2><%= wager.betSize %></h2>
+                                            <h6>Tokens</h6>
+                                        </div>
+                                </div>
+
+                                <!-- STATUS LEGEND
+                                0 = waiting for an opponent 
+                                1 = Opponent found / Game in progress / Playing 
+                                2 = Game ended -->
+                                
+                                <% if(wager.status === "0") { %>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                                <% } else if(wager.status === "1") {%>
+                                    <div class="wagers">
+                                        <div class="thumb">
+                                            <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                                width="36" height="8" viewBox="0 0 36 8">
+                                                <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                    fill="#878a8c" />
+                                                <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                    transform="translate(14)" fill="#878a8c" />
+                                                <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                    transform="translate(28)" fill="#878a8c" />
+                                            </svg>
+                                        </div>
+                                        
+                                        <h4>opponent found</h4>
+                                        <div class="tokens">
+                                            <h4>-------</h4>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn red round">Remove Wager</a>
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-3 col-xl-6">
+                        <a href="/wager" class="add-wager-btn">
+                            <span class="icon">+</span>
+                            <span>Add Tournament</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My wagers start  -->
+            <div class="replay-addwagers-section section">
+                <div class="replay-section-title">
+                    <h2>Wagers Started</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user1.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <p>United States</p>
+                                        <span class="icon">
+                                            <img src="/images/flag1.png" alt="">
+                                        </span>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <p>PLAYING...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user1.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <p>United States</p>
+                                        <span class="icon">
+                                            <img src="/images/flag1.png" alt="">
+                                        </span>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <p>PLAYING...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My wagers start  -->
+            <div class="replay-addwagers-section section">
+                <div class="replay-section-title search-title">
+                    <h2>Opponent Wagers</h2>
+                    <form>
+                        <input class="form-control" type="text" placeholder="Search">
+                    </form>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-6">
+                        <div class="add-wagers-items">
+                            <div class="wagers-top">
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <img src="/images/user.png" alt="">
+                                    </div>
+                                    <h3>Gerard</h3>
+                                    <div class="country">
+                                        <span class="icon">
+                                            <img src="/images/flag.png" alt="">
+                                        </span>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="tokens">
+                                        <h2>875,93</h2>
+                                        <h6>Tokens</h6>
+                                    </div>
+                                </div>
+                                <div class="wagers">
+                                    <div class="thumb">
+                                        <svg id="Group_70" data-name="Group 70" xmlns="http://www.w3.org/2000/svg"
+                                            width="36" height="8" viewBox="0 0 36 8">
+                                            <circle id="Ellipse_19" data-name="Ellipse 19" cx="4" cy="4" r="4"
+                                                fill="#878a8c" />
+                                            <circle id="Ellipse_20" data-name="Ellipse 20" cx="4" cy="4" r="4"
+                                                transform="translate(14)" fill="#878a8c" />
+                                            <circle id="Ellipse_21" data-name="Ellipse 21" cx="4" cy="4" r="4"
+                                                transform="translate(28)" fill="#878a8c" />
+                                        </svg>
+                                    </div>
+                                    <h4>Waiting for an opponent</h4>
+                                    <div class="tokens">
+                                        <h4>-------</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wagers-bottom">
+                                <p>WAGER | 03/18/2021</p>
+                                <a href="" class="btn theme-btn green round">Join Wager</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery v3.5.1 -->
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap v5.0 -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- Extra Plugin -->
+    <script src="/vendors/wow-js/wow.min.js"></script>
+    <script src="/vendors/swiper-slider/swiper-bundle.min.js"></script>
+    <script src="/vendors/nice-select/jquery.nice-select.js"></script>
+    <script src="/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="/vendors/counterup/jquery.counterup.min.js"></script>
+
+    <!-- Theme js / Custom js -->
+    <script src="/js/theme.js"></script>
+</body>
+</html>
